@@ -21,16 +21,15 @@ const themes = [
 
 const HW12 = () => {
     // взять ид темы из редакса
-    const themeId = useSelector<AppStoreType, Theme>(state => state.theme).themeId
+    const { themeId } = useSelector<AppStoreType, Theme>(state => state.theme)
     const dispatch = useDispatch()
     const change = (id: number) => { // дописать функцию
         console.log(id)
-        dispatch(changeThemeId(id))
-
+        dispatch(changeThemeId(Number(id)))
     }
 
     useEffect(() => {
-        document.documentElement.dataset.theme = themeId + ''
+        document.documentElement.dataset.theme = themeId + ""
     }, [themeId])
 
     return (
@@ -45,7 +44,7 @@ const HW12 = () => {
                     className={s.select}
                     onChangeOption={change}
                     // сделать переключение тем
-                    options={themes.map(el => ({ ...el, value: el.value[0].toUpperCase() + el.value.slice(1) }))}
+                    options={themes}
                 />
             </div>
         </div>
